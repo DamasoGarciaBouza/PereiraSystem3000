@@ -1,0 +1,11 @@
+; CONSTANTS: FACTS
+
+(defconst playersInGame 3)
+(defrule(true)=>(set-goal playersInGame 0)(disable-self))
+
+(defrule
+    (true)
+=>
+    (up-get-fact players-in-game any playersInGame)
+    (disable-self)
+)

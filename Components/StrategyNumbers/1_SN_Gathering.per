@@ -1,0 +1,138 @@
+(defrule
+    (true)
+=>
+    (set-strategic-number sn-initial-exploration-required 0)
+    (set-strategic-number sn-required-forest-tiles 8)
+    (set-strategic-number sn-lumber-camp-max-distance 15)
+    (disable-self)
+)
+
+
+; TIMER 18 INCREASES LUMBER CAMPS DISTANCE SLOWLY AFTER BUILDING ONE
+
+; ============================================================
+; LUMBER CAMP DISTANCE - dinamico
+; Rango: 1-6 | umbral = 100 / goal playersInGame rupado
+; Grupos: 1p=100 | 2p=50 | 3-4p=29 | 5-6p=18 | 7+p=13
+; ============================================================
+
+
+; LUMBER CAMP DISTANCE - dinamico
+; Rango: 1-6 | umbral = 100 / goal playersInGame
+; Grupos: 1p=100 | 2p=50 | 3-4p=29 | 5-6p=18 | 7+p=13
+; ============================================================
+
+; --- PASO 1: Base segun civiles ajustados por jugadores ---
+
+(defrule (goal playersInGame 2) (unit-type-count-total villager < 50)  => (set-goal lumberCampDistanceIncrement 1))
+(defrule (goal playersInGame 2) (unit-type-count-total villager >= 50)  (unit-type-count-total villager < 100) => (set-goal lumberCampDistanceIncrement 2))
+(defrule (goal playersInGame 2) (unit-type-count-total villager >= 100) (unit-type-count-total villager < 150) => (set-goal lumberCampDistanceIncrement 3))
+(defrule (goal playersInGame 2) (unit-type-count-total villager >= 150) (unit-type-count-total villager < 200) => (set-goal lumberCampDistanceIncrement 4))
+(defrule (goal playersInGame 2) (unit-type-count-total villager >= 200) (unit-type-count-total villager < 250) => (set-goal lumberCampDistanceIncrement 5))
+(defrule (goal playersInGame 2) (unit-type-count-total villager >= 250) => (set-goal lumberCampDistanceIncrement 6))
+
+(defrule (or (goal playersInGame 3) (goal playersInGame 4)) (unit-type-count-total villager < 29)  => (set-goal lumberCampDistanceIncrement 1))
+(defrule (or (goal playersInGame 3) (goal playersInGame 4)) (unit-type-count-total villager >= 29)  (unit-type-count-total villager < 58)  => (set-goal lumberCampDistanceIncrement 2))
+(defrule (or (goal playersInGame 3) (goal playersInGame 4)) (unit-type-count-total villager >= 58)  (unit-type-count-total villager < 87)  => (set-goal lumberCampDistanceIncrement 3))
+(defrule (or (goal playersInGame 3) (goal playersInGame 4)) (unit-type-count-total villager >= 87)  (unit-type-count-total villager < 116) => (set-goal lumberCampDistanceIncrement 4))
+(defrule (or (goal playersInGame 3) (goal playersInGame 4)) (unit-type-count-total villager >= 116) (unit-type-count-total villager < 145) => (set-goal lumberCampDistanceIncrement 5))
+(defrule (or (goal playersInGame 3) (goal playersInGame 4)) (unit-type-count-total villager >= 145) => (set-goal lumberCampDistanceIncrement 6))
+
+(defrule (or (goal playersInGame 5) (goal playersInGame 6)) (unit-type-count-total villager < 18)  => (set-goal lumberCampDistanceIncrement 1))
+(defrule (or (goal playersInGame 5) (goal playersInGame 6)) (unit-type-count-total villager >= 18) (unit-type-count-total villager < 36) => (set-goal lumberCampDistanceIncrement 2))
+(defrule (or (goal playersInGame 5) (goal playersInGame 6)) (unit-type-count-total villager >= 36) (unit-type-count-total villager < 54) => (set-goal lumberCampDistanceIncrement 3))
+(defrule (or (goal playersInGame 5) (goal playersInGame 6)) (unit-type-count-total villager >= 54) (unit-type-count-total villager < 72) => (set-goal lumberCampDistanceIncrement 4))
+(defrule (or (goal playersInGame 5) (goal playersInGame 6)) (unit-type-count-total villager >= 72) (unit-type-count-total villager < 90) => (set-goal lumberCampDistanceIncrement 5))
+(defrule (or (goal playersInGame 5) (goal playersInGame 6)) (unit-type-count-total villager >= 90) => (set-goal lumberCampDistanceIncrement 6))
+
+(defrule (goal playersInGame 7) (unit-type-count-total villager < 13)  => (set-goal lumberCampDistanceIncrement 1))
+(defrule (goal playersInGame 7) (unit-type-count-total villager >= 13) (unit-type-count-total villager < 26) => (set-goal lumberCampDistanceIncrement 2))
+(defrule (goal playersInGame 7) (unit-type-count-total villager >= 26) (unit-type-count-total villager < 39) => (set-goal lumberCampDistanceIncrement 3))
+(defrule (goal playersInGame 7) (unit-type-count-total villager >= 39) (unit-type-count-total villager < 52) => (set-goal lumberCampDistanceIncrement 4))
+(defrule (goal playersInGame 7) (unit-type-count-total villager >= 52) (unit-type-count-total villager < 65) => (set-goal lumberCampDistanceIncrement 5))
+(defrule (goal playersInGame 7) (unit-type-count-total villager >= 65) => (set-goal lumberCampDistanceIncrement 6))
+
+; --- Bonus ludicrous solo desde tier 3 en adelante ---
+(defrule (map-size ludicrous) (goal lumberCampDistanceIncrement 3) => (set-goal lumberCampDistanceIncrement 4))
+(defrule (map-size ludicrous) (goal lumberCampDistanceIncrement 4) => (set-goal lumberCampDistanceIncrement 5))
+(defrule (map-size ludicrous) (goal lumberCampDistanceIncrement 5) => (set-goal lumberCampDistanceIncrement 6))
+
+(defrule
+	(game-time > 10)
+=>
+    (up-chat-data-to-self "Lumber camp distance increment = %d" g: lumberCampDistanceIncrement)
+    (up-chat-data-to-self "Lumber camps max distance = %d" s: sn-lumber-camp-max-distance)
+    (disable-self)
+)
+
+(defrule
+    (true)
+=>
+	(set-strategic-number sn-maximum-wood-drop-distance 8)
+    (disable-self)
+)
+
+(defrule
+    (wood-amount < 100)(game-time > 300)
+=>
+	(set-strategic-number sn-maximum-wood-drop-distance -1)
+    ;(chat-to-player my-player-number "WOOD DROP DISTANCE INCREASED")    
+)
+
+(defrule
+    (wood-amount >= 3000)
+=>
+	(set-strategic-number sn-maximum-wood-drop-distance 4)
+    (chat-to-player my-player-number "WOOD DROP DISTANCE REDUCED")
+)
+
+
+
+
+
+(defrule
+    (building-type-count farm > 10)
+=>
+    (set-strategic-number sn-maximum-hunt-drop-distance 0)
+	(set-strategic-number sn-maximum-food-drop-distance 12)
+)
+
+(defrule
+    (building-type-count farm < 10)
+=>
+    (set-strategic-number sn-maximum-hunt-drop-distance 26)
+	(set-strategic-number sn-maximum-food-drop-distance 26)
+)
+
+(defrule
+    (building-type-count castle >= 3)
+=>
+    (set-strategic-number sn-maximum-stone-drop-distance 1)
+)
+
+(defrule
+    (current-age == dark-age)
+=>
+    (set-strategic-number sn-food-gatherer-percentage 50)
+    (set-strategic-number sn-wood-gatherer-percentage 50)
+    (disable-self)
+)
+
+(defrule
+    (current-age == feudal-age)
+=>
+    (set-strategic-number sn-food-gatherer-percentage 45)
+    (set-strategic-number sn-wood-gatherer-percentage 45)
+    (set-strategic-number sn-gold-gatherer-percentage 10)  
+    (disable-self)
+)
+
+(defrule
+    (current-age == imperial-age)
+=>
+    (set-strategic-number sn-food-gatherer-percentage 45)
+    (set-strategic-number sn-wood-gatherer-percentage 45)
+    (set-strategic-number sn-gold-gatherer-percentage 5)
+    (set-strategic-number sn-stone-gatherer-percentage 5)      
+    (disable-self)
+)

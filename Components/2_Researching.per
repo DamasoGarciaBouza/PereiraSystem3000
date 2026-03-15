@@ -1,0 +1,46 @@
+(defrule(can-research feudal-age)(unit-type-count-total villager > 6)=>(research feudal-age))
+
+(defrule(can-research castle-age)=>(research castle-age))
+
+(defrule(can-research imperial-age)=>(research imperial-age))
+
+
+
+
+
+(defrule
+    (wood-amount > 150)
+    (or(food-amount > 225)(unit-type-count villager > 0))
+    (can-research ri-wheel-barrow)
+=>
+    (research ri-wheel-barrow)
+)
+
+
+
+; LUMBER UPGRADES
+(defrule(can-research ri-double-bit-axe)(wood-amount > 150)=>(research ri-double-bit-axe))
+(defrule(can-research ri-bow-saw)=>(research ri-bow-saw))
+(defrule(can-research ri-two-man-saw)=>(research ri-two-man-saw))
+
+; FARMS
+(defrule(wood-amount > 175)(building-type-count-total farm > 8)
+(can-research ri-horse-collar)
+=>
+    (research ri-horse-collar)
+)
+
+(defrule
+    (wood-amount > 225)(building-type-count-total farm > 10)
+    (can-research ri-heavy-plow)
+=>
+    (research ri-heavy-plow)
+)
+
+
+(defrule
+    (wood-amount > 350)(building-type-count-total farm > 12)
+    (can-research ri-crop-rotation)
+=>
+    (research ri-crop-rotation)
+)
