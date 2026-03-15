@@ -30,7 +30,7 @@
 	(building-type-count-total lumber-camp > 0)
 =>
 	(disable-timer 17)
-    (enable-timer 18 60)
+    (enable-timer 18 30)
     (disable-self)
 )
 
@@ -38,10 +38,10 @@
 	(timer-triggered 18)
 =>
 	(disable-timer 18)
-    (enable-timer 18 180) 
+    (enable-timer 18 120) 
     (up-modify-sn sn-lumber-camp-max-distance g:+ lumberCampDistanceIncrement)
-    ;(up-chat-data-to-self "Lumber camp distance increment = %d" g: lumberCampDistanceIncrement)
-    ;(up-chat-data-to-self "Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
+    (up-chat-data-to-self "Lumber camp distance increment = %d" g: lumberCampDistanceIncrement)
+    (up-chat-data-to-self "Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
     ;    (up-chat-data-to-self "players = %d" g: playersInGame)
 )
 
