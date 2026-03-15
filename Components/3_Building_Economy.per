@@ -52,24 +52,7 @@
     (build farm)
 )
 
-(defrule
-    (idle-farm-count == 0)
-=>
-    (chat-to-player my-player-number "NO IDLE FARMS")
-)
 
-(defrule
-    (idle-farm-count > 0)
-    (idle-farm-count < 5)
-=>
-    (chat-to-player my-player-number "LESS THAN 5 IDLE FARMS")
-)
-
-(defrule
-    (idle-farm-count >= 5)
-=>
-    (chat-to-player my-player-number "FIVE 5 OR MORE IDLE FARMS")
-)
 
 
 (defrule

@@ -3,6 +3,14 @@
 (defrule
     (true)
 =>
+	(set-strategic-number sn-cap-civilian-builders 255)          
+	(set-strategic-number sn-maximum-town-size 255)   
+    (disable-self)
+)
+
+(defrule
+    (true)
+=>
     (up-assign-builders c: dock c: 2)
     (up-assign-builders c: monastery c: 3)
     (up-assign-builders c: keep c: 2)

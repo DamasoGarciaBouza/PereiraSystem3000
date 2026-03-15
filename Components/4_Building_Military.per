@@ -67,7 +67,7 @@
 ; ===== CASTLE =====
 (defrule
     (goal enablePlaceControlBuilding 0)
-    (building-type-count-total castle == 0)
+    ;(building-type-count-total castle == 0)
     (building-type-count town-center > 0)
     (wood-amount >= 275)
     (can-build castle)
@@ -77,7 +77,7 @@
 
 (defrule
     (goal enablePlaceControlBuilding 1)
-    (building-type-count-total castle == 0)
+    ;(building-type-count-total castle == 0)
     (building-type-count town-center > 0)
     (wood-amount >= 275)
     (up-can-build 0 c: castle)

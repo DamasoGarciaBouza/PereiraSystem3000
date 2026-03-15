@@ -29,16 +29,6 @@
     (disable-self)
 )
 
-(defrule
-    (up-players-in-game enemy > 0)
-    (current-age == imperial-age)
-    (game-time > 2400)
-=>
-    (enable-timer 30 00)
-    (chat-to-player my-player-number "ATTACK: IMPERIAL AGE + 40 MINUTES")
-    (disable-self)
-)
-
 
 ; ATTACK!
 (defrule
