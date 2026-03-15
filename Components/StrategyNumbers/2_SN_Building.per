@@ -1,0 +1,36 @@
+
+; EXTRA BUILDERS
+(defrule
+    (true)
+=>
+    (up-assign-builders c: dock c: 2)
+    (up-assign-builders c: monastery c: 3)
+    (up-assign-builders c: keep c: 2)
+    (up-assign-builders c: bombard-tower c: 2)
+    (up-assign-builders c: castle c: 5)
+    (up-assign-builders c: town-center c: 3)
+    (up-assign-builders c: town-center-foundation c: 8)
+    (disable-self)
+)
+
+(defrule
+    (current-age > dark-age)
+=>
+    (up-assign-builders c: house c: 2)
+    (disable-self)
+)
+
+(defrule
+    (current-age > feudal-age)
+=>
+    (up-assign-builders c: house c: 3)
+    (disable-self)
+)
+
+(defrule
+    (current-age > castle-age)
+=>
+    (up-assign-builders c: house c: 4)      
+    (up-assign-builders c: castle c: 7)  
+    (disable-self)
+)

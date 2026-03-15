@@ -3,7 +3,10 @@
 (defrule
     (wood-amount >= 125)
     (can-build house)
-    (housing-headroom <= 6)
+    (or
+        (current-age < castle-age)(housing-headroom <= 6)
+        (housing-headroom <= 10)
+    )
 =>
     (build house)
 )
