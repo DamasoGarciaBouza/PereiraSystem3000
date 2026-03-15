@@ -3,7 +3,7 @@
 =>
     (set-strategic-number sn-initial-exploration-required 0)
     (set-strategic-number sn-required-forest-tiles 8)
-    (set-strategic-number sn-lumber-camp-max-distance 15)
+    (set-strategic-number sn-lumber-camp-max-distance 15)  
     (disable-self)
 )
 
@@ -122,6 +122,13 @@
 =>
 	(set-strategic-number sn-maximum-wood-drop-distance 4)
     ;(chat-to-player my-player-number "WOOD DROP DISTANCE REDUCED")
+)
+
+(defrule
+    (wood-amount >= 30000)(food-amount > 2000)
+=>
+	(set-strategic-number sn-maximum-wood-drop-distance 1)
+    (chat-to-player my-player-number "TRYING TO STOP THE LUMBERJACK MADNESS!!")
 )
 
 
