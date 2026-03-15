@@ -1,0 +1,26 @@
+; CONSTANTS: FACTS
+
+(defconst playersInGame 20)
+(defconst villagerBase 21)
+(defconst villagerBuilder 22)
+(defconst villagerRepairer 23)
+(defconst villagerFood 24)
+(defconst villagerForager 25)
+(defconst villagerHunter 26)
+(defconst villagerShepherd 27)
+(defconst villagerFisherman 28)
+(defconst villagerFarmer 29)
+(defconst villagerStone 30)
+(defconst villagerGold 31)
+
+; INIT: set goals to 0 (solo una vez)
+(defrule(true)=>
+    (set-goal playersInGame 0)
+    (set-goal villagerBase 0)
+    (set-goal villagerBuilder 0)
+    (set-goal villagerRepairer 0)
+    (set-goal villagerFood 0)
+    (set-goal villagerForager 0)
+    (set-goal villagerHunter 0)
+    (set-goal villagerShepherd 0)
+    (set-goal villa

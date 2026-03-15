@@ -78,3 +78,11 @@
 =>
     (build town-center)
 )
+
+(defrule
+    (building-type-count blacksmith == 0)
+    (wood-amount >= 250)
+    (can-build blacksmith)
+=>
+    (build blacksmith)
+)

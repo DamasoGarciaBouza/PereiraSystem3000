@@ -1,0 +1,10 @@
+; CONSTANTS - SPECIAL
+
+(defconst temp1 1)
+(defconst randomGoal 2)
+
+(defrule(true)=>
+    (set-goal temp1 0)
+    (set-goal randomGoal 0)
+    (disable-self)
+)

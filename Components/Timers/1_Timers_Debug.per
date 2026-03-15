@@ -1,0 +1,48 @@
+; --- DEBUG WOOD ---
+(defrule(goal debugWood 1)=>(enable-timer 1 30)(disable-self))
+(defrule(timer-triggered 1)=>
+    (disable-timer 1)
+    (enable-timer 1 60)
+    (up-chat-data-to-self "Wood drop distance: %d" s: sn-maximum-wood-drop-distance)
+)
+
+; --- DEBUG FOOD ---
+(defrule(goal debugFood 1)=>(enable-timer 2 30)(disable-self))
+(defrule(timer-triggered 2)=>
+    (disable-timer 2)
+    (enable-timer 2 60)
+    (up-chat-data-to-self "Food drop distance: %d" s: sn-maximum-food-drop-distance)
+    (up-chat-data-to-self "Farmer count: %d" g: villagerFarmer)
+)
+
+; --- DEBUG VILLAGERS BASE ---
+(defrule(goal debugVillagers 1)=>(enable-timer 3 30)(disable-self))
+(defrule(timer-triggered 3)=>
+    (disable-timer 3)
+    (enable-timer 3 60)
+    (up-chat-data-to-self "Villager base: %d" g: villagerBase)
+    (up-chat-data-to-self "Villager builder: %d" g: villagerBuilder)
+    (up-chat-data-to-self "Villager repairer: %d" g: villagerRepairer)
+)
+
+; --- DEBUG VILLAGERS FOOD ---
+(defrule(goal debugVillagersFood 1)=>(enable-timer 4 30)(disable-self))
+(defrule(timer-triggered 4)=>
+    (disable-timer 4)
+    (enable-timer 4 60)
+    (up-chat-data-to-self "Villager food: %d" g: villagerFood)
+    (up-chat-data-to-self "Villager forager: %d" g: villagerForager)
+    (up-chat-data-to-self "Villager hunter: %d" g: villagerHunter)
+    (up-chat-data-to-self "Villager shepherd: %d" g: villagerShepherd)
+    (up-chat-data-to-self "Villager fisherman: %d" g: villagerFisherman)
+)
+
+; --- DEBUG VILLAGERS RESOURCES ---
+(defrule(goal debugVillagersRes 1)=>(enable-timer 5 30)(disable-self))
+(defrule(timer-triggered 5)=>
+    (disable-timer 5)
+    (enable-timer 5 60)
+    (up-chat-data-to-self "Villager stone: %d" g: villagerStone)
+    (up-chat-data-to-self "Villager gold: %d" g: villagerGold)
+    (up-chat-data-to-self "Players in game: %d" g: playersInGame)
+)
