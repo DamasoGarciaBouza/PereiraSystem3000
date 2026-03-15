@@ -128,6 +128,18 @@
     (build siege-workshop)
 )
 
+
+(defrule
+    (building-type-count-total castle == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (up-can-build 0 c: castle)
+=>
+    (chat-local-to-self "Trying To Build Castle - Place Control 12")
+    (up-set-placement-data my-player-number town-center c: 12)
+    (up-build place-control 0 c: castle)  
+)
+
 (defrule
     (can-build castle)
 =>
