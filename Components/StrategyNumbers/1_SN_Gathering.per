@@ -66,6 +66,44 @@
 )
 
 (defrule
+    (current-age == dark-age)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 50)
+    (set-strategic-number sn-food-gatherer-percentage 50)
+
+    (disable-self)
+)
+
+(defrule
+    (current-age == feudal-age)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 40)
+    (set-strategic-number sn-food-gatherer-percentage 50)
+    (set-strategic-number sn-gold-gatherer-percentage 10)  
+    (disable-self)
+)
+
+(defrule
+    (current-age == castle-age)
+=>
+    (set-strategic-number sn-food-gatherer-percentage 45)
+    (set-strategic-number sn-wood-gatherer-percentage 45)
+    (set-strategic-number sn-gold-gatherer-percentage 5)
+    (set-strategic-number sn-stone-gatherer-percentage 5)      
+    (disable-self)
+)
+
+(defrule
+    (current-age == imperial-age)
+=>
+    (set-strategic-number sn-food-gatherer-percentage 60)
+    (set-strategic-number sn-wood-gatherer-percentage 30)
+    (set-strategic-number sn-gold-gatherer-percentage 5)
+    (set-strategic-number sn-stone-gatherer-percentage 5)      
+    (disable-self)
+)
+
+(defrule
     (true)
 =>
 	(set-strategic-number sn-maximum-wood-drop-distance 8)
@@ -107,43 +145,13 @@
 (defrule
     (building-type-count castle >= 3)
 =>
-    (set-strategic-number sn-maximum-stone-drop-distance 1)
-)
-
-(defrule
-    (current-age == dark-age)
-=>
-    (set-strategic-number sn-wood-gatherer-percentage 50)
-    (set-strategic-number sn-food-gatherer-percentage 50)
-
-    (disable-self)
-)
-
-(defrule
-    (current-age == feudal-age)
-=>
-    (set-strategic-number sn-wood-gatherer-percentage 40)
-    (set-strategic-number sn-food-gatherer-percentage 50)
-    (set-strategic-number sn-gold-gatherer-percentage 10)  
-    (disable-self)
-)
-
-(defrule
-    (current-age == castle-age)
-=>
-    (set-strategic-number sn-food-gatherer-percentage 45)
-    (set-strategic-number sn-wood-gatherer-percentage 45)
-    (set-strategic-number sn-gold-gatherer-percentage 5)
-    (set-strategic-number sn-stone-gatherer-percentage 5)      
-    (disable-self)
+    (set-strategic-number sn-maximum-stone-drop-distance 0)
 )
 
 (defrule
     (current-age == imperial-age)
+    (gold-amount > 2000)
 =>
-    (set-strategic-number sn-food-gatherer-percentage 60)
-    (set-strategic-number sn-wood-gatherer-percentage 30)
-    (set-strategic-number sn-gold-gatherer-percentage 5)
-    (set-strategic-number sn-stone-gatherer-percentage 5)      
-    (disable-self)
+    (set-strategic-number sn-maximum-gold-drop-distance 6)
 )
+

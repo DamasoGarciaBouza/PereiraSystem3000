@@ -8,12 +8,112 @@
 
 
 
+; TOWN CENTER UPGRADES
+; VILLAGER UPGRADES
 (defrule
-    (wood-amount > 150)
-    (or(food-amount > 225)(unit-type-count villager > 0))
+    (can-research ri-loom)
+    (or
+        (or
+            (enemy-buildings-in-town)
+            (unit-type-count-total monk-set g:>= monkQtyLow)
+        )
+        (or
+            (current-age == imperial-age)
+            (and(gold-amount > 250)(town-under-attack))
+        )
+    )
+=>
+    (research ri-loom)
+)
+
+(defrule
     (can-research ri-wheel-barrow)
+
 =>
     (research ri-wheel-barrow)
+)
+
+(defrule
+    (can-research ri-wheel-barrow)
+    (or
+        (or
+            (and(not(town-under-attack))(enemy-buildings-in-town))
+            (civilian-population > 5)
+        )   
+        (civ-selected viking)
+    )
+=>
+    (research ri-wheel-barrow)
+)
+
+(defrule
+    (can-research ri-hand-cart)
+
+=>
+    (research ri-hand-cart)
+)
+
+(defrule
+    (can-research ri-hand-cart)
+    (or
+        (or
+            (or(building-type-count-total monastery > 0)
+            (players-building-type-count any-ally monastery > 0))
+            (and(civ-selected burgundians)(civilian-population > 10))
+        )   
+        (civ-selected viking)
+    )
+=>
+    (research ri-hand-cart)
+)
+; BUILDING SIGHT RANGE
+(defrule
+    (can-research ri-town-watch)
+    (food-amount > 1600)
+    (current-age == imperial-age)
+=>
+    (research ri-town-watch )
+)
+(defrule
+    (can-research ri-town-patrol )
+    (food-amount > 1800)
+=>
+    (research ri-town-patrol )
+)
+; MARKET
+(defrule
+    (can-research ri-caravan )
+    (or
+        (unit-type-count-total trade-cart > 0)
+    	(unit-type-count-total trade-cog > 0)
+    )
+=>
+    (research ri-caravan )
+)
+(defrule
+    (or
+        (or
+            (wood-amount > 500)
+            (food-amount > 1000)
+        )
+        (gold-amount > 500)
+    )
+    (can-research ri-guilds)
+=>
+    (research ri-guilds)
+)
+(defrule
+    (players-building-type-count any-ally market > 0)
+    (building-type-count-total monastery > 0)
+    (can-research ri-coinage)
+=>
+    (research ri-coinage)
+)
+(defrule
+    (players-building-type-count any-ally market > 0)
+    (can-research ri-banking)
+=>
+    (research ri-banking)
 )
 
 
