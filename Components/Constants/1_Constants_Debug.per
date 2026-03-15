@@ -5,6 +5,8 @@
 (defconst debugVillagers 7)
 (defconst debugVillagersFood 8)
 (defconst debugVillagersRes 9)
+(defconst enablePlaceControlBuilding 10)
+(defconst enableLumberCamps 11)
 
 (defrule(true)=>
     (set-goal debugWood 0)
@@ -12,5 +14,7 @@
     (set-goal debugVillagers 0)
     (set-goal debugVillagersFood 0)
     (set-goal debugVillagersRes 0)
+    (set-goal enablePlaceControlBuilding 0)
+    (set-goal enableLumberCamps 0)    
     (disable-self)
 )

@@ -1,5 +1,52 @@
+; ===== BARRACKS =====
+(defrule
+    (goal enablePlaceControlBuilding 0)
+    (building-type-count-total barracks == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (can-build barracks)
+=>
+    (build barracks)
+)
 
 (defrule
+    (goal enablePlaceControlBuilding 1)
+    (building-type-count-total barracks == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (up-can-build 0 c: barracks)
+=>
+    (chat-local-to-self "Trying To Build Barracks - Place Control")
+    (up-set-placement-data my-player-number -1 c: 3)
+    (up-build place-control 0 c: barracks)
+)
+
+; ===== ARCHERY RANGE =====
+(defrule
+    (goal enablePlaceControlBuilding 0)
+    (building-type-count-total archery-range == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (can-build archery-range)
+=>
+    (build archery-range)
+)
+
+(defrule
+    (goal enablePlaceControlBuilding 1)
+    (building-type-count-total archery-range == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (up-can-build 0 c: archery-range)
+=>
+    (chat-local-to-self "Trying To Build Archery Range - Place Control")
+    (up-set-placement-data my-player-number -1 c: -3)
+    (up-build place-control 0 c: archery-range)
+)
+
+; ===== STABLE =====
+(defrule
+    (goal enablePlaceControlBuilding 0)
     (building-type-count stable == 0)
     (wood-amount >= 275)
     (can-build stable)
@@ -7,9 +54,9 @@
     (build stable)
 )
 
-
-
+; ===== SIEGE WORKSHOP =====
 (defrule
+    (goal enablePlaceControlBuilding 0)
     (building-type-count siege-workshop == 0)
     (wood-amount >= 275)
     (can-build siege-workshop)
@@ -17,51 +64,25 @@
     (build siege-workshop)
 )
 
-
+; ===== CASTLE =====
 (defrule
+    (goal enablePlaceControlBuilding 0)
     (building-type-count-total castle == 0)
     (building-type-count town-center > 0)
     (wood-amount >= 275)
-    (up-can-build 0 c: castle)
-=>
-    (chat-local-to-self "Trying To Build Castle - Place Control 8")
-    (up-set-placement-data my-player-number -1 c: 6)
-    (up-build place-control 0 c: castle)  
-)
-
-(defrule
     (can-build castle)
 =>
     (build castle)
 )
 
 (defrule
-    (building-type-count-total barracks == 0)
+    (goal enablePlaceControlBuilding 1)
+    (building-type-count-total castle == 0)
     (building-type-count town-center > 0)
     (wood-amount >= 275)
-    (up-can-build 0 c: barracks)
+    (up-can-build 0 c: castle)
 =>
-    (chat-local-to-self "Trying To Build Barracks")
-    (up-set-placement-data my-player-number -1 c: 3)
-    (up-build place-control 0 c: barracks)  
-)
-
-(defrule
-    (building-type-count-total archery-range == 0)
-    (building-type-count town-center > 0)
-    (wood-amount >= 275)
-    (up-can-build 0 c: archery-range)
-=>
-    (chat-local-to-self "Trying To Build Archery Range")
-    (up-set-placement-data my-player-number -1 c: -3)
-    (up-build place-control 0 c: archery-range)  
-)
-
-
-(defrule
-    (building-type-count monastery == 0)
-    (wood-amount >= 275)
-    (can-build monastery)
-=>
-    (build monastery)
+    (chat-local-to-self "Trying To Build Castle - Place Control")
+    (up-set-placement-data my-player-number -1 c: 6)
+    (up-build place-control 0 c: castle)
 )

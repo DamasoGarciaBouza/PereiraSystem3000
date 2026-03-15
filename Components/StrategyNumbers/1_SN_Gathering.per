@@ -86,6 +86,7 @@
 (defrule
     (current-age == castle-age)
 =>
+    (set-strategic-number sn-maximum-hunt-drop-distance 0)   
     (set-strategic-number sn-wood-gatherer-percentage 45)
     (set-strategic-number sn-food-gatherer-percentage 45)    
     (set-strategic-number sn-gold-gatherer-percentage 5)

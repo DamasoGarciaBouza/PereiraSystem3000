@@ -1,9 +1,15 @@
+; STRATEGIC NUMBERS - GATHERING - TESTING
+
 (defrule
     (true)
 =>
     (set-strategic-number sn-initial-exploration-required 0)
     (set-strategic-number sn-required-forest-tiles 8)
-    (set-strategic-number sn-lumber-camp-max-distance 1)  
+    (set-strategic-number sn-lumber-camp-max-distance 1)
+    (set-strategic-number sn-maximum-hunt-drop-distance 0)
+	(set-strategic-number sn-maximum-food-drop-distance 255)       
+	(set-strategic-number sn-cap-civilian-builders 255)          
+	(set-strategic-number sn-maximum-town-size 255)          
     (disable-self)
 )
 
@@ -11,9 +17,10 @@
     (true)
 =>
     (set-strategic-number sn-wood-gatherer-percentage 0)
-    (set-strategic-number sn-food-gatherer-percentage 100)
+    (set-strategic-number sn-food-gatherer-percentage 200)
     (set-strategic-number sn-gold-gatherer-percentage 0)
-    (set-strategic-number sn-stone-gatherer-percentage 0)        
+    (set-strategic-number sn-stone-gatherer-percentage 0)     
+    (disable-self)   
 )
 
 (defrule
@@ -22,4 +29,30 @@
 	(set-strategic-number sn-maximum-wood-drop-distance 0)
 	(set-strategic-number sn-maximum-gold-drop-distance 0)
 	(set-strategic-number sn-maximum-stone-drop-distance 0)    
+    (disable-self)
+)
+
+
+(defrule
+    (current-age > castle-age)
+=>
+    (up-assign-builders c: farm c: 200)      
+)
+
+(defrule
+    (true)
+=>
+    (chat-to-player my-player-number "can-build-farm check")
+)
+
+(defrule
+    (can-build farm)
+=>
+    (chat-to-player my-player-number "CAN BUILD FARM YES")
+)
+
+(defrule
+    (not (can-build farm))
+=>
+    (chat-to-player my-player-number "CAN BUILD FARM NO")
 )

@@ -23,7 +23,7 @@
 	(disable-timer 17)
     (enable-timer 17 25)
     (up-modify-sn sn-lumber-camp-max-distance c:+ 1)
-    (up-chat-data-to-self "NO LCs! - Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
+    ;(up-chat-data-to-self "NO LCs! - Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
 )
 
 (defrule
@@ -40,8 +40,8 @@
 	(disable-timer 18)
     (enable-timer 18 180) 
     (up-modify-sn sn-lumber-camp-max-distance g:+ lumberCampDistanceIncrement)
-    (up-chat-data-to-self "Lumber camp distance increment = %d" g: lumberCampDistanceIncrement)
-    (up-chat-data-to-self "Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
-        (up-chat-data-to-self "players = %d" g: playersInGame)
+    ;(up-chat-data-to-self "Lumber camp distance increment = %d" g: lumberCampDistanceIncrement)
+    ;(up-chat-data-to-self "Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
+    ;    (up-chat-data-to-self "players = %d" g: playersInGame)
 )
 

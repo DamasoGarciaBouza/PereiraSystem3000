@@ -1,4 +1,4 @@
-
+; BUILDING - ECONOMY
 
 (defrule
     (wood-amount >= 125)
@@ -13,6 +13,7 @@
 
 
 (defrule
+    (goal enableLumberCamps 1)    
     (can-build lumber-camp)
     (resource-found wood)
     (or(building-type-count house > 0)(civ-selected hun))
@@ -24,7 +25,7 @@
 (defrule
     (building-type-count-total mill == 0)
     (building-type-count town-center > 0)
-    (resource-found food)
+    (or(resource-found food)(game-time > 60))
     (wood-amount >= 200)
     (can-build mill)
 =>
@@ -45,13 +46,30 @@
 (defrule
     (building-type-count town-center > 0)
     (wood-amount > 175)
-    (idle-farm-count < 3)
+    (idle-farm-count < 5)
     (can-build farm)
 =>
     (build farm)
 )
 
+(defrule
+    (idle-farm-count == 0)
+=>
+    (chat-to-player my-player-number "NO IDLE FARMS")
+)
 
+(defrule
+    (idle-farm-count > 0)
+    (idle-farm-count < 5)
+=>
+    (chat-to-player my-player-number "LESS THAN 5 IDLE FARMS")
+)
+
+(defrule
+    (idle-farm-count >= 5)
+=>
+    (chat-to-player my-player-number "FIVE 5 OR MORE IDLE FARMS")
+)
 
 
 (defrule
@@ -85,4 +103,21 @@
     (can-build blacksmith)
 =>
     (build blacksmith)
+)
+
+
+(defrule
+    (building-type-count monastery == 0)
+    (wood-amount >= 275)
+    (can-build monastery)
+=>
+    (build monastery)
+)
+
+(defrule
+    (building-type-count university == 0)
+    (wood-amount >= 200)
+    (can-build university)
+=>
+    (build university)
 )
