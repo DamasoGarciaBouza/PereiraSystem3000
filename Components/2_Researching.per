@@ -1469,7 +1469,7 @@
 )
 (defrule
     (civ-selected bengalis)
-    (unit-type-count villager g:> maxCiviliansCastleAge)
+    (current-age == imperial-age)
     (can-research my-unique-research)
 =>
     (research my-unique-research)
