@@ -126,6 +126,7 @@
 
 (defrule
     (wood-amount >= 30000)(food-amount > 2000)
+
 =>
 	(set-strategic-number sn-maximum-wood-drop-distance 1)
     (chat-to-player my-player-number "TRYING TO STOP THE LUMBERJACK MADNESS!!")
@@ -162,3 +163,8 @@
     (set-strategic-number sn-maximum-gold-drop-distance 6)
 )
 
+(defrule
+    (unit-type-count villager-farmer > 10)
+    =>
+    (chat-local-to-self "more than 10 farmers!")
+)

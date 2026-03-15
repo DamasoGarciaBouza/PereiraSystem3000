@@ -1,0 +1,80 @@
+
+
+(defrule
+    (wood-amount >= 125)
+    (can-build house)
+    (or
+        (and(current-age < castle-age)(housing-headroom <= 6))
+        (housing-headroom <= 10)
+    )
+=>
+    (build house)
+)
+
+
+(defrule
+    (can-build lumber-camp)
+    (resource-found wood)
+    (or(building-type-count house > 0)(civ-selected hun))
+    (dropsite-min-distance wood > 2)
+=>
+    (build lumber-camp)
+)
+
+(defrule
+    (building-type-count-total mill == 0)
+    (building-type-count town-center > 0)
+    (resource-found food)
+    (wood-amount >= 200)
+    (can-build mill)
+=>
+    (build mill) 
+)
+
+(defrule
+    (current-age > feudal-age)
+    (building-type-count-total mill < 2)
+    (building-type-count town-center > 0)
+    (resource-found food)
+    (wood-amount >= 200)
+    (can-build mill)
+=>
+    (build mill) 
+)
+
+(defrule
+    (building-type-count town-center > 0)
+    (wood-amount > 175)
+    (idle-farm-count < 3)
+    (can-build farm)
+=>
+    (build farm)
+)
+
+
+
+
+(defrule
+    (building-type-count market == 0)
+    (wood-amount >= 275)
+    (can-build market)
+=>
+    (build market)
+)
+
+(defrule
+    (current-age == castle-age)
+    (building-type-count town-center < 3)
+    (wood-amount >= 275)
+    (can-build town-center)
+=>
+    (build town-center)
+)
+
+(defrule
+    (building-type-count town-center < 6)
+    (wood-amount >= 275)
+    (can-build town-center)
+=>
+    (build town-center)
+)

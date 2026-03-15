@@ -1,0 +1,73 @@
+
+(defrule
+    (building-type-count stable == 0)
+    (wood-amount >= 275)
+    (can-build stable)
+=>
+    (build stable)
+)
+
+(defrule
+    (building-type-count blacksmith == 0)
+    (wood-amount >= 250)
+    (can-build blacksmith)
+=>
+    (build blacksmith)
+)
+
+(defrule
+    (building-type-count siege-workshop == 0)
+    (wood-amount >= 275)
+    (can-build siege-workshop)
+=>
+    (build siege-workshop)
+)
+
+
+(defrule
+    (building-type-count-total castle == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (up-can-build 0 c: castle)
+=>
+    (chat-local-to-self "Trying To Build Castle - Place Control 8")
+    (up-set-placement-data my-player-number -1 c: 6)
+    (up-build place-control 0 c: castle)  
+)
+
+(defrule
+    (can-build castle)
+=>
+    (build castle)
+)
+
+(defrule
+    (building-type-count-total barracks == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (up-can-build 0 c: barracks)
+=>
+    (chat-local-to-self "Trying To Build Barracks")
+    (up-set-placement-data my-player-number -1 c: 3)
+    (up-build place-control 0 c: barracks)  
+)
+
+(defrule
+    (building-type-count-total archery-range == 0)
+    (building-type-count town-center > 0)
+    (wood-amount >= 275)
+    (up-can-build 0 c: archery-range)
+=>
+    (chat-local-to-self "Trying To Build Archery Range")
+    (up-set-placement-data my-player-number -1 c: -3)
+    (up-build place-control 0 c: archery-range)  
+)
+
+
+(defrule
+    (building-type-count monastery == 0)
+    (wood-amount >= 275)
+    (can-build monastery)
+=>
+    (build monastery)
+)

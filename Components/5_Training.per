@@ -1,0 +1,51 @@
+
+(defrule
+    (can-train villager)
+    (unit-type-count-total villager < 170)
+=>
+    (train villager)
+)
+
+
+; TRAIN
+(defrule
+    (not(hold-relics))
+    (unit-type-count-total monk < 5)
+    (can-train monk)
+=>
+    (train monk)
+)
+
+(defrule
+    (unit-type-count-total spearman-line < 10)
+    (can-train spearman-line)
+=>
+    (train spearman-line)
+)
+
+(defrule
+    (unit-type-count-total skirmisher-line < 10)
+    (can-train skirmisher-line)
+=>
+    (train skirmisher-line)
+)
+
+(defrule
+    (can-train my-unique-unit-line)
+=>
+    (train my-unique-unit-line)
+)
+
+(defrule
+    (unit-type-count-total scout-cavalry-line < 10)
+    (can-train scout-cavalry-line)
+=>
+    (train scout-cavalry-line)
+)
+
+(defrule
+    (current-age == imperial-age)
+    (can-train trebuchet)
+=>
+    (train trebuchet)
+)
