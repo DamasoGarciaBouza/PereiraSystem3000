@@ -435,19 +435,28 @@
 )
 ; CAVALRY DEFENSE
 (defrule
-    (unit-type-count-total cavalry-class > 2)
+    (or
+        (unit-type-count-total cavalry-class > 2)
+        (unit-type-count-total light-cavalry > 2)
+    )
     (can-research ri-scale-barding)
 =>
     (research ri-scale-barding)
 )
 (defrule
-    (unit-type-count-total cavalry-class > 2)
+    (or
+        (unit-type-count-total cavalry-class > 2)
+        (unit-type-count-total light-cavalry > 2)
+    )
     (can-research ri-chain-barding)
 =>
     (research ri-chain-barding)
 )
 (defrule
-    (unit-type-count-total cavalry-class > 2)
+    (or
+        (unit-type-count-total cavalry-class > 2)
+        (unit-type-count-total light-cavalry > 2)
+    )
     (can-research ri-plate-barding)
 =>
     (research ri-plate-barding)
