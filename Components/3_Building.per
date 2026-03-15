@@ -58,7 +58,7 @@
     (up-can-build 0 c: barracks)
 =>
     (chat-local-to-self "Trying To Build Barracks")
-    (up-set-placement-data my-player-number town-center c: 6)
+    (up-set-placement-data my-player-number town-center c: 3)
     (up-build place-control 0 c: barracks)  
 )
 
@@ -68,8 +68,8 @@
     (wood-amount >= 275)
     (up-can-build 0 c: archery-range)
 =>
-    (chat-local-to-self "Trying To Build Barracks")
-    (up-set-placement-data my-player-number town-center c: -6)
+    (chat-local-to-self "Trying To Build Archery Range")
+    (up-set-placement-data my-player-number town-center c: -3)
     (up-build place-control 0 c: archery-range)  
 )
 
