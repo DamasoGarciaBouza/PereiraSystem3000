@@ -802,3 +802,707 @@
 =>
     (research ri-bombard-tower)
 )
+
+
+; UNIQUE TECHS
+; AOK
+; BYZANTINES
+(defrule
+    (civ-selected byzantine)
+    (or
+        (unit-type-count-total fire-ship-line > 0)
+        (unit-type-count-total bombard-tower > 0)
+    )
+    (can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "FIRE SHIPS +1 RANGE! - BOMBARD TOWERS AOE DAMAGE!")
+)
+(defrule
+    (can-research my-unique-research)
+    (civ-selected byzantine)(unit-type-count-total my-unique-unit-line > 0)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CATAFRACTS CAUSE TRAMPLE DAMAGE!")
+)
+; CELTS
+(defrule
+    (can-research ri-stronghold)
+    (or
+        (building-type-count-total castle > 0)
+        (building-type-count-total watch-tower-line > 0)
+    )
+    (or
+        (current-age == imperial-age)
+        (town-under-attack)
+    )
+=>
+    (research ri-stronghold)
+    (chat-to-player my-player-number "TOWERS AND CASTLES SHOOT 33% FASTER, CASTLES HEAL NEARBY INFANTRY!")
+)
+(defrule
+    (can-research my-unique-research)
+    (civ-selected celtic)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "SIEGE WEAPONS +40% HP!")
+)
+; CHINESE
+(defrule
+    (civ-selected chinese)
+    (or
+        (or
+            (building-type-count-total watch-tower-line > 0)
+            (building-type-count-total bombard-tower > 0)
+        )
+        (building-type-count-total stone-wall-line > 0)
+    )
+    (can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "WALLS AND TOWERS +30% HP!")
+)
+(defrule
+    (civ-selected chinese)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "UNIQUE ARCHERS +2 ATTACK, SCORPIONS +4 ATTACK!")
+)
+; FRANKS
+(defrule
+    (civ-selected frankish)(unit-type-count-total my-unique-unit-line > 0)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "AXE THROWERS +1 RANGE!")
+)
+(defrule
+    (civ-selected frankish)(can-research my-unique-research )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "STABLES WORK 40% FASTER!")
+)
+; GOTHS
+(defrule ;anarchy
+    (civ-selected gothic)
+    (current-age == imperial-age)(building-type-count barracks > 1)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "HUSKARLS AVAILABLE AT BARRACKS!")
+)
+(defrule
+    (civ-selected gothic)(building-type-count barracks > 1)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "BARRACKS SPEED DOUBLED!")
+)
+; BRITONS
+(defrule
+    (civ-selected briton)(can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "ARCHERS +1 RANGE, TOWERS +2 ATTACK!")
+)
+(defrule
+    (can-research my-unique-research)
+    (civ-selected briton)(unit-type-count-total trebuchet > 0)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "TREBUCHETS CAUSE BLAST DAMAGE!")
+)
+; JAPANESE
+(defrule
+    (can-research 484)
+    (building-type-count-total watch-tower-line > 2)
+=>
+    (research 484)
+    (chat-to-player my-player-number "TOWERS SHOOT EXTRA ARROWS!")
+)
+(defrule
+    (civ-selected japanese)
+    ;(can-research my-unique-research)
+    (up-can-research 0 c: my-unique-research)
+    (unit-type-count-total trebuchet > 0)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "TREBUCHETS PACK AND UNPACK FASTER!")
+)
+; MONGOLIANS
+(defrule
+    (can-research 487)
+=>
+    (research 487)
+    (chat-to-player my-player-number "WE DON´T NEED HOUSES ANYMORE!")
+)
+(defrule
+    (civ-selected mongol)(can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-local-to-self "SIEGE WEAPONS 50% FASTER!")
+)
+; PERSIANS
+(defrule
+    (civ-selected persian)(can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "ARCHERS COST NO GOLD!")
+)
+(defrule
+    (civ-selected persian)(can-research my-unique-research)
+    (building-type-count castle > 2)
+    (wood-amount > 1000)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CASTLES + ATTACK AND DEFENSE!")
+)
+; SARACEN
+(defrule
+    (civ-selected saracen)(can-research my-second-unique-research)
+    (unit-type-count monk > 1)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "MONKS HEALING AURA!")
+)
+(defrule
+    (civ-selected saracen)(can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "TREBUCHETS AND MANGONELS +15% ATTACK!")
+)
+; TEUTONS
+(defrule
+    (civ-selected teutonic)(can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "SIEGE WEAPONS +4 MELEE ARMOR!")
+)
+(defrule
+    (civ-selected teutonic)(can-research my-unique-research)
+    (building-type-count-total castle > 0)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CASTLES +3 RANGE!")
+)
+; TURKS
+(defrule
+    (or(current-age == imperial-age)(and(food-amount > 1350)(gold-amount > 950)))
+    (building-type-count archery-range > 0)
+    (can-research ri-sipahi)
+=>
+    (research ri-sipahi)
+    (chat-to-player my-player-number "CAVALRY ARCHERS +20 HP!")
+)
+(defrule
+    (civ-selected turkish)(can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "ALL TYPES OF CANNONS +2 RANGE!")
+)
+; VIKINGS
+(defrule
+    (can-research ri-chieftains)
+=>
+    (research ri-chieftains)
+    (chat-to-player my-player-number "INFANTRY CAUSES EXTRA DAMAGE TO CAVALRY, WINS GOLD BY KILLING CIVILIANS AND MONKS!")
+)
+(defrule
+    (civ-selected viking)(can-research my-unique-research)
+    (or(unit-type-count-total archer-line > 4)(unit-type-count-total galley-line > 4))
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "ARCHERS AND DRAKKARS +1 ATTACK")
+)
+; AOC
+; AZTECS
+(defrule
+    (can-research ri-atlatl)
+    (or
+        (unit-type-count-total skirmisher-line > 0)
+        (or
+            (unit-type-count-total genitour > 0)
+            (unit-type-count-total elite-genitour > 0)
+        )
+    )
+=>
+    (research ri-atlatl)
+    (chat-to-player my-player-number "SKIRMISHERS +1 ATTACK, +1 RANGE")
+)
+(defrule
+    (civ-selected aztec)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "INFANTRY +4 ATTACK!")
+)
+; KOREANS
+(defrule
+    (civ-selected korean)
+    (building-type-count-total watch-tower-line > 3)
+    (can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "TOWERS +2 RANGE!")
+)
+(defrule
+    (civ-selected korean)
+    (unit-type-count-total mangonel-line > 0)
+    (can-research my-unique-research )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "MANGONELS +1 RANGE!")
+)
+; SPANISH
+(defrule
+    (can-research ri-inquisition)
+    (current-age == imperial-age)
+=>
+    (research ri-inquisition)
+    (chat-to-player my-player-number "INQUISITION!")
+)
+(defrule
+    (civ-selected spanish)
+    (can-research my-unique-research)
+    (research-completed ri-sappers)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "SE VA A HABÉ UN FOLLÓN QUE NO VA SABE NI ONDE SA METÍO!")
+    (set-strategic-number sn-allow-civilian-defense 2)
+    (set-strategic-number sn-allow-civilian-offense 3)
+)
+; HUNS
+(defrule
+    (can-research 483)
+=>
+    (research 483)
+    (chat-to-player my-player-number "CREATE TARCANS AT STABLES!")
+)
+(defrule
+    (civ-selected hun)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "ENEMY RELICS PRODUCE HALF THE GOLD!")
+)
+; MAYANS
+(defrule
+    (civ-selected mayan)(unit-type-count-total skirmisher-line > 0)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "SKIRMISHERS SHOOT TWICE!")
+)
+(defrule
+    (civ-selected mayan)(unit-type-count-total eagle-warrior-line > 0)
+    (can-research my-unique-research )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "EAGLE WARRIORS +40 HP!")
+)
+; SLAVS
+(defrule
+    (civ-selected slavic)
+    (stone-amount < 1000)
+    (can-research my-second-unique-research)
+    (current-age == imperial-age)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "CASTLES COST LESS STONE!")
+)
+(defrule
+    (can-research ri-druzhina)
+=>
+    (research ri-druzhina)
+    (chat-to-player my-player-number "INFANTRY ATTACKS WITH BLAST DAMAGE!")
+)
+; HUNGARIANS - MAGYAR
+(defrule
+    (civ-selected magyar)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "UNIQUE UNIT COSTS NO GOLD!")
+)
+(defrule
+    (civ-selected magyar)  (can-research my-unique-research )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CAVALRY ARCHERS +1 ATTACK, +1 RANGE!")
+)
+; INCA
+(defrule
+    (civ-selected incan)(can-research my-second-unique-research)
+    (or
+        (unit-type-count-total skirmisher > 0)
+        (unit-type-count-total slinger > 0)
+    )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "SKIRMISHERS AND SLINGERS NO MINIMUM RANGE!")
+)
+(defrule
+    (civ-selected incan)(can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "KAMAYUKS, SLINGERS, EAGLE WARRIORS +1 MELEE, +2 RANGED ARMOR!")
+)
+; INDIANS - HINDUSTANIS
+(defrule
+    (civ-selected indian)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "GOLD INCOME 10% FASTER!")
+)
+(defrule
+    (civ-selected indian)(can-research my-unique-research)
+    (current-age == imperial-age)
+    (unit-type-count-total hand-cannoneer > 0)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "HAND CANNONEERS +2 RANGE!")
+)
+; ITALIANS
+(defrule
+    (civ-selected italian)
+    (can-research my-second-unique-research )
+    (current-age == imperial-age)
+    (or
+        (or
+            (unit-type-count-total condottiero > 0)
+            (unit-type-count-total archer-line > 0)
+        )
+        (unit-type-count-total my-unique-unit-line > 0)
+    )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "FOOR ARCHERS AND CONDOTTIERI +1 MELEE, +1 RANGED ARMOR!")
+)
+(defrule
+    (civ-selected italian)
+    (can-research my-unique-research) ; ruta de la seda
+    (or
+        (unit-type-count-total trade-cart > 0)
+        (unit-type-count-total trade-cog > 0)
+    )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "TRADE UNITS COST HALF THE PRICE!")
+)
+; PORTUGUESE
+(defrule
+    (can-research ri-carrack)
+    (current-age == imperial-age)(building-type-count-total dock > 0)
+=>
+    (research ri-carrack)
+    (chat-to-player my-player-number "SHIPS +1 MELEE +1 RANGED ARMOR!")
+)
+(defrule
+    (can-research ri-arquebus )
+    (current-age == imperial-age)
+=>
+    (research ri-arquebus)
+    (chat-to-player my-player-number "GUNPOWDER UNITS ACCURACY INCREASED!")
+)
+; MALIAN
+(defrule
+    (can-research ri-tigui )
+    (current-age == imperial-age) (building-type-count-total town-center > 1)
+=>
+    (research ri-tigui)
+    (chat-to-player my-player-number "TOWN CENTERS SHOOT BY THEMSELVES!")
+)
+(defrule
+    (can-research my-unique-research)(civ-selected malian)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CAVALRY +5 ATTACK!")
+)
+; ETHIOPIAN
+(defrule
+    (can-research ri-royal-heirs); generic research wasnt workin
+    (unit-type-count-total my-unique-unit-line > 0)
+=>
+    (research ri-royal-heirs)
+    (chat-to-player my-player-number "UNIQUE UNITS PRODUCED FASTER!")
+)
+(defrule
+    (can-research ri-torsion-engines)
+    (unit-type-count siege-weapon-class > 4)
+    (civ-selected ethiopian)
+=>
+    (research ri-torsion-engines)
+    (chat-to-player my-player-number "SIEGE WORKSHOP UNITS BLAST RADIUS INCREASED!")
+)
+; BERBER
+(defrule
+    (civ-selected berbers)
+    (can-research ri-kasbah)
+    (research-completed my-unique-research)
+    (building-type-count-total castle > 1);KASBAH
+=>
+    (research ri-kasbah)
+    (chat-to-player my-player-number "CASTLES WORK FASTER!")
+)
+(defrule
+    (civ-selected berbers)
+    (can-research my-unique-research)
+    (or
+        (unit-type-count-total my-unique-unit-line > 0)
+        (unit-type-count-total camel-line > 0)
+    )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CAMELS REGENERATE!")
+)
+; BURMESE
+(defrule
+    (can-research my-second-unique-research)
+    (civ-selected burmese)
+    (unit-type-count-total battle-elephant-line > 0)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "ELEPHANTS +1 MELEE, + 2 RANGED ARMOR!")
+)
+(defrule
+    (can-research my-unique-research)
+    (civ-selected burmese)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CAVALRY +6 ATTACK AGAINST BUILDINGS!")
+)
+; KHMER
+(defrule
+    (civ-selected khmer)(can-research my-second-unique-research)
+    (unit-type-count-total battle-elephant-line > 0)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "BATTLE ELEPHANTS +3 ATAQUE!")
+)
+(defrule
+    (civ-selected khmer)(can-research my-unique-research)
+    (or(unit-type-count-total my-unique-unit-line > 0)(unit-type-count-total scorpion-line > 0))
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "BALLISTA ELEPHANTS AND SCORPIONS SHOOT TWICE!")
+)
+; MALAY
+(defrule
+    (can-research ri-thalassocracy)
+    (building-type-count dock > 1)
+    (current-age == imperial-age)
+=>
+    (research ri-thalassocracy)
+    (chat-to-player my-player-number "DOCKS SHOOT ARROWS!")
+)
+(defrule
+    (civ-selected malay)(can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "MILITIA COSTS NO GOLD!")
+)
+; VIETNAMESE
+(defrule
+    (civ-selected vietnamese)
+    (can-research my-second-unique-research)
+    (unit-type-count-total battle-elephant-line > 0)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "ELEPHANTS +50 HP!")
+)
+(defrule
+    (civ-selected vietnamese)(can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "LUMBERJACKS GENERATE GOLD!")
+)
+; BULGARIANS
+(defrule
+    (civ-selected bulgarians)
+    (can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "CAVALRY ATTACKS 33% FASTER!")
+)
+(defrule
+    (civ-selected bulgarians)(unit-type-count-total militiaman-line > 0)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "MILITIA +5 MELEE ARMOR!")
+)
+; CUMANS
+(defrule
+    (civ-selected cumans)
+    (can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number  "CAVALRY TRAINS FASTER!")
+)
+(defrule
+    (civ-selected cumans)
+    (or(players-building-type-count any-ally castle > 0)
+    (building-type-count castle > 0))
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "5 MERCENARIES IN CASTLES!")
+)
+; LITHUANIANS
+(defrule
+    (civ-selected lithuanians)(can-research my-second-unique-research)
+    (food-amount > 600)
+    (or
+        (building-type-count-total town-center > 1)
+        (town-under-attack)
+    )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "TOWN CENTERS +3 RANGE!")
+)
+(defrule
+    (civ-selected lithuanians)(can-research my-unique-research)
+    (or
+        (unit-type-count-total spearman-line > 0)
+        (unit-type-count-total skirmisher-line > 0)
+    )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "SPEARMEN AND SKIRMISHERS +2 RANGED ARMOR!")
+)
+; TATARS
+(defrule
+    (civ-selected tatars)(can-research my-second-unique-research )
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "CAVALRY EXCEPT KNIGHTS GETS +1 MELEE +1 RANGED ARMOR!")
+)
+(defrule
+    (civ-selected tatars)(can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "TREBUCHETS +2 RANGE!")
+)
+; BURGUNDIANS
+(defrule
+    (can-research ri-burgundian-vineyards)
+=>
+    (research ri-burgundian-vineyards)
+    (chat-to-player my-player-number "FARMS GENERATE GOLD!")
+)
+(defrule
+    (civ-selected burgundians)
+    (can-research my-unique-research)(food-amount > 2500)
+    (unit-type-count-total villager g:> knightsQtyMedium)
+    (military-population g:> knightsQtyMedium)
+    (or
+        (unit-type-count-total battering-ram > 4)
+        (unit-type-count-total trebuchet > 4)
+    )
+    (or
+        (players-building-type-count focus-player castle == 1);with 0 takes too much before attack
+        (food-amount > 50000)
+    )
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "REVOLUTION!")
+)
+; SICILIANS
+(defrule
+    (can-research ri-first-crusade)
+    (or
+        (building-type-count-total town-center > 2)
+        (building-type-count-total barracks > 2)
+    )
+    (current-age == imperial-age)
+=>
+    (research ri-first-crusade)
+    (chat-to-player my-player-number "5 SERJEANTS PER TOWN CENTER!")
+)
+(defrule
+    (civ-selected sicilians)(can-research my-unique-research)
+    (unit-type-count-total knight-line > 0)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "KNIGHTS +1 MELEE, +2 RANGED ARMOR!")
+)
+; BOHEMIANS
+(defrule
+    (civ-selected bohemians)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "GUNPOWDER UNITS MOVE FASTER!")
+)
+(defrule
+    (civ-selected bohemians)(food-amount > 1000)
+    (or
+        (not(research-available ri-houfnice))(research-completed ri-houfnice)
+    )
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "MONASTERY TECHS COST FOOD INSTEAD OF GOLD!")
+)
+; POLES
+(defrule
+    (can-research ri-szlachta-privileges)
+=>
+    (research ri-szlachta-privileges)
+    (chat-to-player my-player-number "KNIGHTS GOLD COST REDUCED 60%!")
+)
+(defrule
+    (civ-selected poles)(unit-type-count-total scout-cavalry-line > 0)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "SCOUTS CAUSE TRAMPLE DAMAGE!")
+)
+; BENGALIS
+(defrule
+    (civ-selected bengalis)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "CHARIOTS AND ELEPHANTS ATTACK FASTER!")
+)
+(defrule
+    (civ-selected bengalis)
+    (unit-type-count villager g:> maxCiviliansCastleAge)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "VILLAGERS TAKE 10% LESS SPACE!")
+)
+; DRAVIDIANS
+(defrule
+    (civ-selected dravidians)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "ELEPHANTS REGENERATE!")
+)
+(defrule
+    (civ-selected dravidians)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "INFANTRY AND CAVALRY ATTACKS IGNORE ARMOR!")
+)
+; GURJARAS
+(defrule
+    (civ-selected gurjaras)
+    (can-research my-second-unique-research)
+=>
+    (research my-second-unique-research)
+    (chat-to-player my-player-number "MILITARY UNITS COST 25% LESS FOOD!")
+)
+(defrule
+    (civ-selected gurjaras)
+    (can-research my-unique-research)
+=>
+    (research my-unique-research)
+    (chat-to-player my-player-number "CAMELS AND ELEPHANTS ARCHERS +4 MELEE ARMOR!")
+)
