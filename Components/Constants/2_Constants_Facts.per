@@ -1,47 +1,14 @@
 ; CONSTANTS: FACTS
 
 (defconst playersInGame 20)
-(defconst villagerBase 21)
-(defconst villagerBuilder 22)
-(defconst villagerRepairer 23)
-(defconst villagerFood 24)
-(defconst villagerForager 25)
-(defconst villagerHunter 26)
-(defconst villagerShepherd 27)
-(defconst villagerFisherman 28)
-(defconst villagerFarmer 29)
-(defconst villagerStone 30)
-(defconst villagerGold 31)
 
-; INIT: set goals to 0 (solo una vez)
+; INIT
 (defrule(true)=>
     (set-goal playersInGame 0)
-    (set-goal villagerBase 0)
-    (set-goal villagerBuilder 0)
-    (set-goal villagerRepairer 0)
-    (set-goal villagerFood 0)
-    (set-goal villagerForager 0)
-    (set-goal villagerHunter 0)
-    (set-goal villagerShepherd 0)
-    (set-goal villagerFisherman 0)
-    (set-goal villagerFarmer 0)
-    (set-goal villagerStone 0)
-    (set-goal villagerGold 0)
     (disable-self)
 )
 
-; UPDATE: se ejecuta cada ciclo sin disable-self
+; UPDATE
 (defrule(true)=>
-    (up-get-fact players-in-game any playersInGame)
-    (up-get-fact unit-count-type villager-base villagerBase)
-    (up-get-fact unit-count-type villager-builder villagerBuilder)
-    (up-get-fact unit-count-type villager-repairer villagerRepairer)
-    (up-get-fact unit-count-type villager-food villagerFood)
-    (up-get-fact unit-count-type villager-forager villagerForager)
-    (up-get-fact unit-count-type villager-hunter villagerHunter)
-    (up-get-fact unit-count-type villager-shepherd villagerShepherd)
-    (up-get-fact unit-count-type villager-fisherman villagerFisherman)
-    (up-get-fact unit-count-type villager-farmer villagerFarmer)
-    (up-get-fact unit-count-type villager-stone villagerStone)
-    (up-get-fact unit-count-type villager-gold villagerGold)
+    (up-get-fact players-in-game enemy playersInGame)
 )

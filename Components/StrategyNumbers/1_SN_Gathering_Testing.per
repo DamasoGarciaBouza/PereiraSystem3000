@@ -1,0 +1,25 @@
+(defrule
+    (true)
+=>
+    (set-strategic-number sn-initial-exploration-required 0)
+    (set-strategic-number sn-required-forest-tiles 8)
+    (set-strategic-number sn-lumber-camp-max-distance 1)  
+    (disable-self)
+)
+
+(defrule
+    (true)
+=>
+    (set-strategic-number sn-wood-gatherer-percentage 0)
+    (set-strategic-number sn-food-gatherer-percentage 100)
+    (set-strategic-number sn-gold-gatherer-percentage 0)
+    (set-strategic-number sn-stone-gatherer-percentage 0)        
+)
+
+(defrule
+    (true)
+=>
+	(set-strategic-number sn-maximum-wood-drop-distance 0)
+	(set-strategic-number sn-maximum-gold-drop-distance 0)
+	(set-strategic-number sn-maximum-stone-drop-distance 0)    
+)

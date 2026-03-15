@@ -163,3 +163,86 @@
     (set-strategic-number sn-maximum-gold-drop-distance 6)
 )
 
+; ALERTS
+
+(defrule
+    (game-time > 300)
+    (unit-type-count villager-forager == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No foragers!")
+    (disable-self)
+)
+
+(defrule
+    (game-time > 300)
+    (unit-type-count villager-hunter == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No hunters!")
+    (disable-self)
+)
+
+(defrule
+    (game-time > 300)
+    (unit-type-count villager-shepherd == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No shepherds!")
+    (disable-self)
+)
+
+(defrule
+    (game-time > 300)
+    (unit-type-count villager-fisherman == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No fishermen!")
+    (disable-self)
+)
+
+
+(defrule
+    (game-time > 1800)
+    (unit-type-count villager-builder == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No builders!")
+    (disable-self)
+)
+
+(defrule
+    (game-time > 1800)
+    (unit-type-count villager-repairer == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No repairers!")
+    (disable-self)
+)
+
+(defrule
+    (game-time > 1800)
+    (unit-type-count villager-food == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No food gatherers!")
+    (disable-self)
+)
+
+
+(defrule
+    (game-time > 1800)
+    (unit-type-count villager-farmer == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No farmers!")
+    (disable-self)
+)
+
+(defrule
+    (game-time > 1800)
+    (unit-type-count villager-stone == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No stone miners!")
+    (disable-self)
+)
+
+(defrule
+    (game-time > 1800)
+    (unit-type-count villager-gold == 0)
+=>
+    (chat-to-player my-player-number "WARNING: No gold miners!")
+    (disable-self)
+)
