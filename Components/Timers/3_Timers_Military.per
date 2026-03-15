@@ -1,0 +1,59 @@
+; ATTACK TIMER 30
+
+(defrule
+    (up-players-in-game enemy > 0)
+    (cheats-enabled)
+    (game-time > 900)
+=>
+    (enable-timer 30 00)
+    (chat-to-player my-player-number "ATTACK: CHEATS ENABLED")
+    (disable-self)
+)
+
+(defrule
+    (up-players-in-game enemy > 0)
+    (game-time g:> 3600)
+=>
+    (enable-timer 30 00)
+    (chat-to-player my-player-number "ATTACK: GAME TIME > 1 HOUR")
+    (disable-self)
+)
+
+(defrule
+    (up-players-in-game enemy > 0)
+    (wood-amount > 30000)
+    (food-amount > 30000)
+=>
+    (enable-timer 30 00)
+    (chat-to-player my-player-number "ATTACK: EXCESS RESOURCES")
+    (disable-self)
+)
+
+(defrule
+    (up-players-in-game enemy > 0)
+    (current-age == imperial-age)
+    (game-time > 2400)
+=>
+    (enable-timer 30 00)
+    (chat-to-player my-player-number "ATTACK: IMPERIAL AGE + 40 MINUTES")
+    (disable-self)
+)
+
+
+; ATTACK!
+(defrule
+    (current-age == imperial-age)
+    (food-amount > 1200)
+    (timer-triggered 30)
+    (up-players-in-game enemy > 0)
+    ;(military-population > minArmySize)
+=>
+	(disable-timer 30)
+    (enable-timer 30 30)
+    (set-strategic-number sn-target-player-number 0)   
+    (set-strategic-number sn-percent-attack-soldiers 100)
+    ;(set-goal weAreAttacking 1)
+    (attack-now)
+    (chat-to-allies "31 Attack!")
+    (chat-to-player my-player-number "ATTACK!")
+)

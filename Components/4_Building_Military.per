@@ -7,13 +7,7 @@
     (build stable)
 )
 
-(defrule
-    (building-type-count blacksmith == 0)
-    (wood-amount >= 250)
-    (can-build blacksmith)
-=>
-    (build blacksmith)
-)
+
 
 (defrule
     (building-type-count siege-workshop == 0)

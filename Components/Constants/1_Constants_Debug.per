@@ -1,3 +1,16 @@
-(defconst debugWood 1)
+; CONSTANTS - DEBUG
 
-(defrule(true)=>(set-goal debugWood 1)(disable-self))
+(defconst debugWood 5)
+(defconst debugFood 6)
+(defconst debugVillagers 7)
+(defconst debugVillagersFood 8)
+(defconst debugVillagersRes 9)
+
+(defrule(true)=>
+    (set-goal debugWood 0)
+    (set-goal debugFood 1)
+    (set-goal debugVillagers 0)
+    (set-goal debugVillagersFood 0)
+    (set-goal debugVillagersRes 0)
+    (disable-self)
+)
