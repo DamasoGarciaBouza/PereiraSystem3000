@@ -1,0 +1,41 @@
+(defrule(goal debugWood 1)=>(enable-timer 1 30)(disable-self))
+(defrule
+	(timer-triggered 1)
+=>
+	(disable-timer 1)
+    (enable-timer 1 60)
+    (up-chat-data-to-self "Wood drop distance %d" s: sn-maximum-wood-drop-distance)
+)
+
+
+
+; TIMER 17 INCREASES LUMBER CAMPS DISTANCE FAST WHEN WE HAVE NONE
+(defrule(true)=>(enable-timer 17 320)(disable-self))
+(defrule
+	(timer-triggered 17)
+=>
+	(disable-timer 17)
+    (enable-timer 17 25)
+    (up-modify-sn sn-lumber-camp-max-distance c:+ 1)
+    (up-chat-data-to-self "NO LCs! - Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
+)
+
+(defrule
+	(building-type-count-total lumber-camp > 0)
+=>
+	(disable-timer 17)
+    (enable-timer 18 60)
+    (disable-self)
+)
+
+(defrule
+	(timer-triggered 18)
+=>
+	(disable-timer 18)
+    (enable-timer 18 180) 
+    (up-modify-sn sn-lumber-camp-max-distance g:+ lumberCampDistanceIncrement)
+    (up-chat-data-to-self "Lumber camp distance increment = %d" g: lumberCampDistanceIncrement)
+    (up-chat-data-to-self "Lumber camps max distance increased = %d" s: sn-lumber-camp-max-distance)
+        (up-chat-data-to-self "players = %d" g: playersInGame)
+)
+

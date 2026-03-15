@@ -1,0 +1,18 @@
+; ATTACK TIMER 30
+(defrule
+    (up-players-in-game enemy > 0)
+    (or
+        (or
+            (game-time g:> 5400)
+            (and(wood-amount > 100000)(food-amount > 100000))
+        )
+        (and
+            (cheats-enabled)
+            (game-time > 900)       
+        )
+    )
+=>
+    (enable-timer 30 00)
+    (chat-to-player my-player-number "ATTACK CONDITIONS HAVE BEEN MET!")
+    (disable-self)
+)
